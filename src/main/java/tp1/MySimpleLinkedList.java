@@ -1,3 +1,4 @@
+package src.main.java.tp1;
 
 public class MySimpleLinkedList<T> {
 
@@ -26,8 +27,8 @@ public class MySimpleLinkedList<T> {
 //O(n)
 	/*
 	 * public void insertLast(T info) { if(this.isEmpty()) { this.insertFront(info);
-	 * }else { Node<T> aux = this.first; while (aux.getNext() != null) { aux =
-	 * aux.getNext(); } aux.setNext(new Node<T>(info, null)); cont++;
+	 * }else { src.main.java.tp1.Node<T> aux = this.first; while (aux.getNext() != null) { aux =
+	 * aux.getNext(); } aux.setNext(new src.main.java.tp1.Node<T>(info, null)); cont++;
 	 * 
 	 * 
 	 * 
