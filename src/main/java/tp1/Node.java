@@ -31,4 +31,7 @@ public class Node<T> {
 		this.info = info;
 	}
 
-}
+	public boolean equals(Node<T> o){
+		return this.getInfo() == o.getInfo();
+	}
+	}
