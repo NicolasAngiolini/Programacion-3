@@ -24,16 +24,6 @@ public class MySimpleLinkedList<T> {
 
     }
 
-//O(n)
-    /*
-     * public void insertLast(T info) { if(this.isEmpty()) { this.insertFront(info);
-     * }else { src.main.java.tp1.Node<T> aux = this.first; while (aux.getNext() != null) { aux =
-     * aux.getNext(); } aux.setNext(new src.main.java.tp1.Node<T>(info, null)); cont++;
-     *
-     *
-     *
-     * }
-     */
 
     // O(1)
     public void insertLast(T info) {
@@ -62,10 +52,10 @@ public class MySimpleLinkedList<T> {
 
     //O(1)
     public boolean isEmpty() {
-        if (this.first != null) {
-            return false;
+        if (this.size() == 0) {
+            return true;
         }
-        return true;
+        return false;
     }
 
     // O(n)
@@ -94,18 +84,15 @@ public class MySimpleLinkedList<T> {
 
     public int indexOf(T info) {
         Node<T> aux = this.first;
-        int cont = 0;
-        if (!this.isEmpty()) {
-            while (aux.getInfo().equals(info) && aux.getNext() != null) {
-                aux = aux.getNext();
-                cont++;
-            }
-            if (aux.getInfo() == info)
-                return cont;
-            else
-                return -1;
+        int contador = 0;
+        while (aux != null && !aux.getInfo().equals(info)) {
+            contador++;
+            aux = aux.getNext();
         }
-        return -1;
+        if (aux != null && aux.getInfo().equals(info)) {
+            return contador;
+        } else
+            return -1;
     }
 
     public MySimpleLinkedList<T> elementosEnComun(MySimpleLinkedList<T> list2) {
@@ -114,9 +101,28 @@ public class MySimpleLinkedList<T> {
         while (me != null) {
             Node<T> l2 = list2.first;
             while (l2 != null) {
-                if (me.getInfo().equals(l2.getInfo()) && aux.indexOf(me.getInfo()) == -1) {
+                if (me.getInfo().equals(l2.getInfo())) {
                     aux.insertFront(l2.getInfo());
                 }
+                l2 = l2.getNext();
+            }
+            me = me.getNext();
+        }
+        return aux;
+    }
+
+    public MySimpleLinkedList<T> elementosDistintos(MySimpleLinkedList<T> list2) {
+        MySimpleLinkedList<T> aux = new MySimpleLinkedList<T>();
+        Node<T> me = this.first;
+        while (me != null) {
+            Node<T> l2 = list2.first;
+            while (l2 != null) {
+                // System.out.println(aux.indexOf(me.getInfo()));
+                if (list2.indexOf(me.getInfo()) == -1) {
+
+                    aux.insertFront(me.getInfo());
+                }
+
                 l2 = l2.getNext();
             }
             me = me.getNext();

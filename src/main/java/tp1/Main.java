@@ -23,10 +23,13 @@ public class Main {
         list2.insertFront(4);
         list2.insertFront(2);
         list2.insertLast(5);
+
+        System.out.println(list2.indexOf(5));
+
         System.out.println(list);
         System.out.println(list2);
         System.out.println(list.elementosEnComun(list2));
-
+        System.out.println(list.elementosDistintos(list2));
 
        // System.out.println(list3);
         //System.out.println(list.size());
