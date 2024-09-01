@@ -23,26 +23,28 @@ public class Tree {
     }
 
     public ArrayList<Integer> getLongestBranch() {
-        ArrayList<Integer> li = new ArrayList<>();
-        ArrayList<Integer> l2 = new ArrayList<>();
+
         if (root != null)
-            return getLongestBranch(root, li, l2);
+            return getLongestBranch(root);
 
         return new ArrayList<>();
     }
 
-    private ArrayList<Integer> getLongestBranch(Node nodo, ArrayList<Integer> listi, ArrayList<Integer> listd) {
-        if (nodo.getLeft() != null){
-            listi.add(nodo.getKey());
-        getLongestBranch(nodo.getLeft(), listi, listd);}
-        if (nodo.getRight() != null){
-            listd.add(nodo.getKey());
-        getLongestBranch(nodo.getRight(), listi, listd);}
-        if (listi.size() >= listd.size())
-            return listi;
-        else
-            return listd;
+    private ArrayList<Integer> getLongestBranch(Node nodo) {
+        ArrayList<Integer> li = new ArrayList<>();
+        ArrayList<Integer> ld = new ArrayList<>();
+        if (nodo.getLeft() != null)
+            li = getLongestBranch(nodo.getLeft());
+        if (nodo.getRight() != null)
+            ld = getLongestBranch(nodo.getRight());
 
+        if (li.size() > ld.size()) {
+            li.addFirst(nodo.getKey());
+            return li;
+        } else {
+            ld.addFirst(nodo.getKey());
+            return ld;
+        }
     }
 
     public int getMaxElem() {
