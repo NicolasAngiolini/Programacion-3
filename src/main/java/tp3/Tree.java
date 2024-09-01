@@ -22,6 +22,29 @@ public class Tree {
         }
     }
 
+    public ArrayList<Integer> getLongestBranch() {
+        ArrayList<Integer> li = new ArrayList<>();
+        ArrayList<Integer> l2 = new ArrayList<>();
+        if (root != null)
+            return getLongestBranch(root, li, l2);
+
+        return new ArrayList<>();
+    }
+
+    private ArrayList<Integer> getLongestBranch(Node nodo, ArrayList<Integer> listi, ArrayList<Integer> listd) {
+        if (nodo.getLeft() != null){
+            listi.add(nodo.getKey());
+        getLongestBranch(nodo.getLeft(), listi, listd);}
+        if (nodo.getRight() != null){
+            listd.add(nodo.getKey());
+        getLongestBranch(nodo.getRight(), listi, listd);}
+        if (listi.size() >= listd.size())
+            return listi;
+        else
+            return listd;
+
+    }
+
     public int getMaxElem() {
         if (this.root != null)
             return getMaxElem(this.root);
@@ -34,19 +57,6 @@ public class Tree {
             return getFrontera(this.root, list);
         }
         return new ArrayList<>();
-    }
-
-    private ArrayList<Integer> getFrontera(Node nodo, ArrayList<Integer> list) {
-
-
-        if (nodo.getLeft() == null && nodo.getRight() == null) {
-            list.add(nodo.getKey());
-        }
-        if (nodo.getLeft() != null)
-            getFrontera(nodo.getLeft(), list);
-        if (nodo.getRight() != null)
-            getFrontera(nodo.getRight(), list);
-        return list;
     }
 
     public void preOrder() {
@@ -143,6 +153,19 @@ public class Tree {
         }
         return contadorIzquierda;
     }
+
+    private ArrayList<Integer> getFrontera(Node nodo, ArrayList<Integer> list) {
+
+        if (nodo.getLeft() == null && nodo.getRight() == null) {
+            list.add(nodo.getKey());
+        }
+        if (nodo.getLeft() != null)
+            getFrontera(nodo.getLeft(), list);
+        if (nodo.getRight() != null)
+            getFrontera(nodo.getRight(), list);
+        return list;
+    }
+
 
     private int getMaxElem(Node nodo) {
         if (nodo.getRight() == null)
