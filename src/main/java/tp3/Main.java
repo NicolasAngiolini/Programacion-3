@@ -11,14 +11,17 @@ public class Main {
         ar.add(5);
         ar.add(9);
         ar.add(4);
+        ar.add(15);
         ar.add(6);
         ar.add(11);
-        ar.add(15);
+
 
        /* ar.inOrder();
         ar.preOrder();
         ar.postOrder();
         */
+
+        System.out.println(ar.getMaxElem());
 
 
 

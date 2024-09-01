@@ -1,5 +1,7 @@
 package src.main.java.tp3;
 
+import java.util.ArrayList;
+
 public class Tree {
 
     private Node root;
@@ -13,26 +15,45 @@ public class Tree {
         this.root = root;
     }
 
-    public void postOrder(){
-        if(root!=null){
+    public void postOrder() {
+        if (root != null) {
             postOrder(root);
             System.out.println("--");
         }
     }
 
-    public int getMaxElem(){
-        return getMaxElem();
+    public int getMaxElem() {
+        if (this.root != null)
+            return getMaxElem(this.root);
+        return 0;
     }
 
-    public void preOrder(){
-        if(root!=null){
+    public ArrayList<Integer> getFrontera() {
+        if (!isEmpty()) {
+            ArrayList<Integer> list = new ArrayList<>();
+            return getFrontera(this.root, list);
+        }
+        return null;
+    }
+
+    public ArrayList<Integer> getFrontera(Node nodo, ArrayList<Integer> list) {
+
+        if (nodo.getLeft() == null && nodo.getRight() == null) {
+            list.add(nodo.getKey());
+
+        }
+    }
+
+
+    public void preOrder() {
+        if (root != null) {
             preOrder(root);
             System.out.println("--");
         }
     }
 
-    public void inOrder(){
-        if(root!=null){
+    public void inOrder() {
+        if (root != null) {
             inOrder(root);
             System.out.println("--");
         }
@@ -119,15 +140,19 @@ public class Tree {
         return contadorIzquierda;
     }
 
-
+    private int getMaxElem(Node nodo) {
+        if (nodo.getRight() == null)
+            return nodo.getKey();
+        return getMaxElem(nodo.getRight());
+    }
 
 
     private void postOrder(Node nodo) {
-        if (nodo != null){
+        if (nodo != null) {
             postOrder(nodo.getLeft());
-        postOrder(nodo.getRight());
-        System.out.println(nodo.getKey());
-    }
+            postOrder(nodo.getRight());
+            System.out.println(nodo.getKey());
+        }
     }
 
     private void preOrder(Node nodo) {
