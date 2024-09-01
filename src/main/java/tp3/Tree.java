@@ -29,21 +29,25 @@ public class Tree {
     }
 
     public ArrayList<Integer> getFrontera() {
-        if (!isEmpty()) {
+        if (root != null) {
             ArrayList<Integer> list = new ArrayList<>();
             return getFrontera(this.root, list);
         }
-        return null;
+        return new ArrayList<>();
     }
 
-    public ArrayList<Integer> getFrontera(Node nodo, ArrayList<Integer> list) {
+    private ArrayList<Integer> getFrontera(Node nodo, ArrayList<Integer> list) {
+
 
         if (nodo.getLeft() == null && nodo.getRight() == null) {
             list.add(nodo.getKey());
-
         }
+        if (nodo.getLeft() != null)
+            getFrontera(nodo.getLeft(), list);
+        if (nodo.getRight() != null)
+            getFrontera(nodo.getRight(), list);
+        return list;
     }
-
 
     public void preOrder() {
         if (root != null) {

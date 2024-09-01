@@ -1,5 +1,7 @@
 package src.main.java.tp3;
 
+import java.util.ArrayList;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -21,9 +23,9 @@ public class Main {
         ar.postOrder();
         */
 
-        System.out.println(ar.getMaxElem());
-
-
+        //System.out.println(ar.getMaxElem());
+        ArrayList<Integer> li = ar.getFrontera();
+        System.out.println(li);
 
     }
 }

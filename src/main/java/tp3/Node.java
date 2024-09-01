@@ -1,5 +1,7 @@
 package src.main.java.tp3;
 
+import java.util.Collection;
+
 public class Node {
 
     private int key;
