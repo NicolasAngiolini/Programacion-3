@@ -24,8 +24,9 @@ public class Main {
         */
 
         //System.out.println(ar.getMaxElem());
-        ArrayList<Integer> li = ar.getFrontera();
+        //ArrayList<Integer> li = ar.getFrontera();
+        //System.out.println(li);
+        ArrayList<Integer> li = ar.getLongestBranch();
         System.out.println(li);
-
     }
 }
