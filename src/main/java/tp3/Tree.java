@@ -22,6 +22,8 @@ public class Tree {
         }
     }
 
+
+
     public ArrayList<Integer> getElemAtLevel(int nivel) {
         ArrayList<Integer> li = new ArrayList<>();
         if (root != null)
