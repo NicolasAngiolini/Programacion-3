@@ -62,15 +62,6 @@ public class Tree {
         return nodo;
     }
 
-
-    public int asignDelete(Node nodo) {
-        if (root != null) {
-            return getMinElem(nodo.getRight());
-        }
-        return -1;
-    }
-
-
     public ArrayList<Integer> getElemAtLevel(int nivel) {
         ArrayList<Integer> li = new ArrayList<>();
         if (root != null)
@@ -113,7 +104,6 @@ public class Tree {
             System.out.println("--");
         }
     }
-
 
     public void add(int valor) {
         if (this.root == null)

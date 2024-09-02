@@ -33,13 +33,11 @@ public class Main {
         ar.preOrder();
 
 
-
        /* ar.inOrder();
         ar.postOrder();
         */
-
         //System.out.println(ar.getMaxElem());
-        //ArrayList<Integer> li = ar.getFrontera();
+        ArrayList<Integer> li = ar.getFrontera();
         //System.out.println(li);
 
     }
