@@ -35,6 +35,8 @@ public class Node {
     public void setRight(Node right) {
         this.right = right;
     }
-
+    public boolean isLeaf() {
+        return this.getRight() == null && this.getLeft() == null;
+    }
 
 }

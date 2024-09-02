@@ -22,23 +22,60 @@ public class Tree {
         }
     }
 
+    public boolean delete(int key) {
+        if (root != null) {
+            this.root = delete(key, this.root);
+            return true;
+
+        }
+
+        return false;
+    }
+
+    public Node delete(int key, Node nodo) {
+        if (nodo == null) {
+            return null;
+        }
+        //Recorre
+        if (key < nodo.getKey()) {
+            nodo.setLeft(delete(key, nodo.getLeft()));
+        } else if (key > nodo.getKey()) {
+            nodo.setRight(delete(key, nodo.getRight()));
+        } else {
+            ///nodo sin hijos
+            if (nodo.getLeft() == null && nodo.getRight() == null) {
+                return null;
+            }
+
+            /// nodo con un solo hijo
+            else if (nodo.getLeft() == null) {
+                return nodo.getRight();
+            } else if (nodo.getRight() == null) {
+                return nodo.getLeft();
+            }
+            //Nodo con dos hijos
+            else {
+                nodo.setKey(getMinElem(nodo.getRight()));
+                nodo.setRight(delete(nodo.getKey(), nodo.getRight()));
+            }
+        }
+        return nodo;
+    }
+
+
+    public int asignDelete(Node nodo) {
+        if (root != null) {
+            return getMinElem(nodo.getRight());
+        }
+        return -1;
+    }
+
+
     public ArrayList<Integer> getElemAtLevel(int nivel) {
         ArrayList<Integer> li = new ArrayList<>();
         if (root != null)
             return getElemAtLevel(nivel, this.root, 1, li);
         return new ArrayList<>();
-    }
-
-    private ArrayList<Integer> getElemAtLevel(int nivel, Node nodo, int actual, ArrayList<Integer> li) {
-        if (actual == nivel)
-            li.add(nodo.getKey());
-        else {
-            if (nodo.getLeft() != null)
-                getElemAtLevel(nivel, nodo.getLeft(), actual + 1, li);
-            if (nodo.getRight() != null)
-                getElemAtLevel(nivel, nodo.getRight(), actual + 1, li);
-        }
-        return li;
     }
 
 
@@ -108,6 +145,19 @@ public class Tree {
             return getHeight(contador, this.getRoot());
         }
 
+    }
+
+    /////////////////////////////////////////////////////////////////////
+    private ArrayList<Integer> getElemAtLevel(int nivel, Node nodo, int actual, ArrayList<Integer> li) {
+        if (actual == nivel)
+            li.add(nodo.getKey());
+        else {
+            if (nodo.getLeft() != null)
+                getElemAtLevel(nivel, nodo.getLeft(), actual + 1, li);
+            if (nodo.getRight() != null)
+                getElemAtLevel(nivel, nodo.getRight(), actual + 1, li);
+        }
+        return li;
     }
 
     private boolean hasElem(int valor, Node nodo) {
@@ -192,6 +242,12 @@ public class Tree {
         if (nodo.getRight() == null)
             return nodo.getKey();
         return getMaxElem(nodo.getRight());
+    }
+
+    private int getMinElem(Node nodo) {
+        if (nodo.getLeft() == null)
+            return nodo.getKey();
+        return getMinElem(nodo.getLeft());
     }
 
 

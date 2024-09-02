@@ -6,7 +6,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-
         Tree ar = new Tree();
 
         ar.add(7);
@@ -18,14 +17,30 @@ public class Main {
         ar.add(11);
 
 
-       /* ar.inOrder();
+        /*              7
+                      /   \
+                    5       9
+                  /  \         \
+                4     6          15
+                                /
+                                11
+         */
+
+
+
         ar.preOrder();
+        System.out.println(ar.delete(5));
+        ar.preOrder();
+
+
+
+       /* ar.inOrder();
         ar.postOrder();
         */
 
         //System.out.println(ar.getMaxElem());
-        ArrayList<Integer> li = ar.getFrontera();
-        System.out.println(li);
+        //ArrayList<Integer> li = ar.getFrontera();
+        //System.out.println(li);
 
     }
 }
