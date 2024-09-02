@@ -22,30 +22,32 @@ public class Tree {
         }
     }
 
-    public ArrayList<Integer> getLongestBranch() {
-
+    public ArrayList<Integer> getElemAtLevel(int nivel) {
+        ArrayList<Integer> li = new ArrayList<>();
         if (root != null)
-            return getLongestBranch(root);
-
+            return getElemAtLevel(nivel, this.root, 1, li);
         return new ArrayList<>();
     }
 
-    private ArrayList<Integer> getLongestBranch(Node nodo) {
-        ArrayList<Integer> li = new ArrayList<>();
-        ArrayList<Integer> ld = new ArrayList<>();
-        if (nodo.getLeft() != null)
-            li = getLongestBranch(nodo.getLeft());
-        if (nodo.getRight() != null)
-            ld = getLongestBranch(nodo.getRight());
-
-        if (li.size() > ld.size()) {
-            li.addFirst(nodo.getKey());
-            return li;
-        } else {
-            ld.addFirst(nodo.getKey());
-            return ld;
+    private ArrayList<Integer> getElemAtLevel(int nivel, Node nodo, int actual, ArrayList<Integer> li) {
+        if (actual == nivel)
+            li.add(nodo.getKey());
+        else {
+            if (nodo.getLeft() != null)
+                getElemAtLevel(nivel, nodo.getLeft(), actual + 1, li);
+            if (nodo.getRight() != null)
+                getElemAtLevel(nivel, nodo.getRight(), actual + 1, li);
         }
+        return li;
     }
+
+
+    public ArrayList<Integer> getLongestBranch() {
+        if (root != null)
+            return getLongestBranch(root);
+        return new ArrayList<>();
+    }
+
 
     public int getMaxElem() {
         if (this.root != null)
@@ -166,6 +168,23 @@ public class Tree {
         if (nodo.getRight() != null)
             getFrontera(nodo.getRight(), list);
         return list;
+    }
+
+    private ArrayList<Integer> getLongestBranch(Node nodo) {
+        ArrayList<Integer> li = new ArrayList<>();
+        ArrayList<Integer> ld = new ArrayList<>();
+        if (nodo.getLeft() != null)
+            li = getLongestBranch(nodo.getLeft());
+        if (nodo.getRight() != null)
+            ld = getLongestBranch(nodo.getRight());
+
+        if (li.size() > ld.size()) {
+            li.addFirst(nodo.getKey());
+            return li;
+        } else {
+            ld.addFirst(nodo.getKey());
+            return ld;
+        }
     }
 
 
