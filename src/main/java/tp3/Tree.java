@@ -26,13 +26,11 @@ public class Tree {
         if (root != null) {
             this.root = delete(key, this.root);
             return true;
-
         }
-
         return false;
     }
 
-    public Node delete(int key, Node nodo) {
+    private Node delete(int key, Node nodo) {
         if (nodo == null) {
             return null;
         }
@@ -179,6 +177,43 @@ public class Tree {
         }
     }
 
+    public ArrayList<Integer> hojasMayoresQue(int k) {
+        if (root != null) {
+            ArrayList<Integer> list = new ArrayList<>();
+            return hojasMayoresQue(k, root, list);
+        }
+        return new ArrayList<>();
+    }
+
+    private ArrayList<Integer> hojasMayoresQue(int k, Node nodo, ArrayList<Integer> lista) {
+        if (nodo.isLeaf() && nodo.getKey() > k) {
+            lista.addFirst(nodo.getKey());
+        }
+        if (nodo.getKey() >= k && nodo.getRight() != null)
+            hojasMayoresQue(k, nodo.getRight(), lista);
+        if (nodo.getKey() >= k && nodo.getLeft() != null)
+            hojasMayoresQue(k, nodo.getLeft(), lista);
+        return lista;
+    }
+
+
+    public int sumaNodo() {
+        if (root != null)
+            return sumaNodo(root);
+        return 0;
+    }
+
+    private int sumaNodo(Node nodo) {
+        int acum = 0;
+        if (!nodo.isLeaf()) {
+            acum += nodo.getKey();
+        }
+        if (nodo.getLeft() != null)
+            acum += sumaNodo(nodo.getLeft());
+        if (nodo.getRight() != null)
+            acum += sumaNodo(nodo.getRight());
+        return acum;
+    }
 
     private int getHeight(int contador, Node nodo) {
         int contadorIzquierda = contador;

@@ -28,17 +28,15 @@ public class Main {
 
 
 
-        ar.preOrder();
-        System.out.println(ar.delete(5));
-        ar.preOrder();
-
-
        /* ar.inOrder();
         ar.postOrder();
         */
         //System.out.println(ar.getMaxElem());
         ArrayList<Integer> li = ar.getFrontera();
-        //System.out.println(li);
+        System.out.println(li);
+        System.out.println(ar.sumaNodo());
+        ar.sumaNodo();
 
+        System.out.println(ar.hojasMayoresQue(5));
     }
 }
