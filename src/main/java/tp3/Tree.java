@@ -302,5 +302,31 @@ public class Tree {
         }
     }
 
+    public void fill() {
+        if (root != null) {
+            fill(root);
+        }
+    }
+
+    private int fill(Node nodo) {
+
+        if (nodo.isLeaf())
+            return nodo.getKey();
+
+        int izq;
+        if (nodo.getLeft() != null)
+            izq = fill(nodo.getLeft());
+        else
+            return 0;
+
+        int der;
+        if (nodo.getRight() != null)
+            der = fill(nodo.getRight());
+        else
+            return 0;
+        nodo.setKey(der - izq);
+        return nodo.getKey();
+    }
+
 
 }

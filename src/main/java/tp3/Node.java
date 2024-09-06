@@ -39,4 +39,7 @@ public class Node {
         return this.getRight() == null && this.getLeft() == null;
     }
 
+
+
+
 }
