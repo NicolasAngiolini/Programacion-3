@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
 
         Tree ar = new Tree();
-        TreeNoBusqueda nb = new TreeNoBusqueda();
+
         ar.add(7);
         ar.add(5);
         ar.add(8);
