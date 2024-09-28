@@ -23,4 +23,9 @@ public class Arco<T> {
     public T getEtiqueta() {
         return etiqueta;
     }
+    @Override
+    public String toString() {
+        return "Arco  Origen: " + verticeOrigen + " Destino: " + verticeDestino + " etiqueta: " + etiqueta + "  ";
+    }
+
 }
